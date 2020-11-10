@@ -1,17 +1,11 @@
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
+console.log("Hello Franzi!");
 
-readline.question(`What's your name?`, name => {
-  console.log(`Hi ${name}!`)
-  readline.close()
-})
+const args = process.argv.slice(2);
+const passwordName = args[0];
+console.log(`You want to know the password of ${passwordName}?`);
 
-
-wifi=123
-console.log(wifi)
-key=123
-console.log(key)
-bank=123
-console.log(bank)
+if (passwordName === "Lisa") {
+  console.log("Password is München");
+} else {
+  console.log("Unknown password");
+}
