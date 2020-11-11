@@ -37,38 +37,28 @@ async function validateAccess() {
 
   const args = process.argv.slice(2);
   const passwordName = args[0];
-  console.log(`You want to know the password of ${passwordName}?`);
 
-  const password = passwordSafe[passwordName];
-  if (password) {
-    console.log(`Password is ${password}`);
+  const newPasswordValue = args[1];
+
+  if (newPasswordValue) {
+    passwordSafe[passwordName] = newPasswordValue;
+    fs.writeFile("./db.json", JSON.stringify(passwordSafe, null, 2));
+    console.log("Your password was successfully changed 🥳");
   } else {
-    console.log("unknown password");
+    console.log(`You want to know the password of ${passwordName}?`);
+
+    const password = passwordSafe[passwordName];
+    if (password) {
+      console.log(`Password is ${password}`);
+    } else {
+      console.log("unknown password");
+    }
   }
 }
 validateAccess();
 
-// // console.log(`You want to know the password of ${passwordName}? Please enter the right access key:`);
-
-// // if (passwordName === "Lisa") {
-// //   console.log("Password is München");
-// // } else {
-// //   console.log("Unknown password");
-// // }
-
-// var questions = [
-//   {
-//     type: "input",
-//     name: "name",
-//     message: "Enter your name",
-//     validate: function (input) {
-//       var correct = input.match("Franzi");
-//       if (correct) {
-//         return "This is the rigth answer";
-//       }
-//       {
-//         return "You are a intruder";
-//       }
-//     },
-//   },
-// ];
+// {
+//   "wifi": "123",
+//   "bank": "456",
+//   "pin": "789"
+// }
